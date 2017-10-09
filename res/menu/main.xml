@@ -1,0 +1,47 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.xiaomo.chcarappnew.MainActivity" >
+
+    <item
+        android:id="@+id/action_delete_img"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:checkable="true"
+        android:title="@string/action_delete_img"/>
+    <item
+        android:id="@+id/action_network_set"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_network_set"/>
+    <item
+        android:id="@+id/action_illegal_action"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_illegal_action"/>
+    <item
+        android:id="@+id/action_default_area"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_default_area"/>
+    <item
+        android:id="@+id/action_commo_address"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_commo_address"/>
+    <item
+        android:id="@+id/action_sycn_blacklist"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_sycn_blacklist"/>
+    <item
+        android:id="@+id/action_advanced_set"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_advanced_set"/>
+    <item
+        android:id="@+id/action_seize_type"
+        android:orderInCategory="100"
+        android:showAsAction="never"
+        android:title="@string/action_seize_type"/>
+
+</menu>

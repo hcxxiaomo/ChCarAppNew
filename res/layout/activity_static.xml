@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15sp"
+    android:orientation="vertical" >
+    
+       <lecho.lib.hellocharts.view.LineChartView
+       android:id="@+id/chart"
+       android:layout_width="match_parent"
+       android:layout_height="200sp" />
+       
+       
+         <ListView
+    android:paddingTop="5sp"
+    android:id="@+id/static_listview"
+    android:visibility="invisible"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:divider="@color/divider_color"
+    android:dividerHeight="1dip" >
+        </ListView>
+        
+
+</LinearLayout>

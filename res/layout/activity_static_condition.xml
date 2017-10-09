@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="45sp"
+    android:orientation="vertical" >
+    
+    <LinearLayout 
+        android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+        >
+    <TextView 
+         android:layout_width="80sp"
+    android:layout_height="wrap_content"
+    android:text="@string/static_condition_action"
+        />
+    
+    <Spinner 
+        android:id="@+id/sn_static_condition_action"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+        >
+    <TextView 
+         android:layout_width="80sp"
+    android:layout_height="wrap_content"
+    android:text="@string/static_condition_carnumber"
+        />
+    
+    <EditText
+        android:id="@+id/et_tatic_condition_carnumber"
+           android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:inputType="text"
+        />
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+        >
+    <TextView 
+         android:layout_width="80sp"
+    android:layout_height="wrap_content"
+    android:text="@string/static_condition_starttime"
+        />
+    
+    <Button
+        android:id="@+id/bt_static_condition_starttime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/static_condition_starttime" 
+			/>
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+        >
+    <TextView 
+         android:layout_width="80sp"
+    android:layout_height="wrap_content"
+    android:text="@string/static_condition_endtime"
+        />
+    
+    <Button
+         android:id="@+id/bt_static_condition_endtime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/static_condition_endtime" />
+
+    </LinearLayout>
+    <LinearLayout 
+        android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+        >
+    <TextView 
+         android:layout_width="80sp"
+    android:layout_height="wrap_content"
+    android:text="@string/static_condition_upload"
+        />
+    
+    <Spinner 
+        android:id="@+id/sn_static_condition_upload"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+
+    </LinearLayout>
+    
+    
+    
+    
+    <Button 
+        android:id="@+id/bt_network_set"
+		 android:layout_width="match_parent"
+         android:layout_height="40sp"
+        android:layout_marginTop="40sp"
+        android:background="@drawable/btn_bg_red"
+        android:gravity="center"
+        android:textColor="@color/color_white"
+    android:text="@string/button_select"
+        />
+    
+
+</LinearLayout>

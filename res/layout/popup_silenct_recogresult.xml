@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#50C8C8C8" >
+
+       <TextView 
+           android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal"
+        android:text="@string/result_car_number"
+        android:id="@+id/popup_silenct_canNumber"
+        android:textSize="34sp"
+        android:textColor="#0000ff"
+           />
+        
+    </FrameLayout>
+
+</LinearLayout>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+        android:padding="8sp"
+        android:orientation="vertical"
+     >
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="6sp"
+        >
+        <TextView 
+        android:id="@+id/raid_carnumber"
+             android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/action_settings"
+         android:textSize="20sp"
+            />
+        <TextView 
+             android:id="@+id/raid_isreport"
+            android:layout_marginLeft="2sp"
+             android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/action_settings"
+        android:textSize="12sp"
+        android:layout_gravity="top"
+        android:gravity="top"
+        android:textColor="@color/color_grey"
+            />
+        <TextView 
+             android:id="@+id/raid_time"
+            android:layout_marginLeft="2sp"
+             android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/action_settings"
+        android:textSize="15sp"
+        android:layout_gravity="right"
+        android:gravity="right"
+         android:textColor="@color/color_grey"
+            />
+    </LinearLayout>
+    
+      <TextView 
+             android:id="@+id/raid_illegalstring"
+             android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/action_settings"
+        android:textSize="15sp"
+         android:textColor="@color/color_grey"
+          android:padding="6sp"
+            />
+
+</LinearLayout>

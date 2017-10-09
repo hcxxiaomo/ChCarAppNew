@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ChCarAppNew</string>
+    
+    <string name="hello_world">交警缉查布控平台</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_delete_img">图片上传后删除</string>
+    <string name="action_network_set">网络设置</string>
+    <string name="action_illegal_action">违法行为</string>
+    <string name="action_default_area">默认区域</string>
+    <string name="action_commo_address">常用地址</string>
+    <string name="action_sycn_blacklist">同步黑名单</string>
+    <string name="action_advanced_set">高级设置</string>
+    <string name="action_seize_type">缉查类型</string>
+    
+    <string name="network_set_server">中心服务器地址</string>
+    <string name="network_set_port">中心服务器端口号</string>
+    <string name="network_set_dir">中心服务器目录名</string>
+    
+    <string name="button_ok">确定</string>
+    <string name="button_select">筛选</string>
+    
+    <string name="illegal_action_title_select_ok">设为默认</string>
+    <string name="static_condition_action">违法行为</string>
+    <string name="static_condition_carnumber">车牌号码</string>
+    <string name="static_condition_starttime">开始时间</string>
+    <string name="static_condition_endtime">结束时间</string>
+    <string name="static_condition_place">地点</string>
+    <string name="static_condition_upload">上传状态</string>
+    
+    <string name="illegal_action_title_1">高速公路逆向行驶 4602</string>
+    <string name="illegal_action_content_1">抓拍2张 识别第2张</string>
+    <string name="illegal_action_title_2">占用应急车道行驶 4608</string>
+    <string name="illegal_action_content_2">抓拍2张 识别第1张</string>
+    <string name="illegal_action_title_3">违反禁令标志提示 1344</string>
+    <string name="illegal_action_title_4">不按规定车道行驶 1355</string>
+    <string name="illegal_action_title_5">违反禁止标线指示 1230</string>
+    <string name="illegal_action_title_6">不按规定倒车 4601</string>
+    <string name="illegal_action_title_7">违反警告标志指示 1090</string>
+    
+    <string name="password_title">请输入验证码</string>
+    <string name="system_key">系统号码 : </string>
+    <string name="verify_key">验证号码 : </string>
+    <string name="id_ok">确定</string>
+    <string name="id_cancel">取消</string>
+    <string name="accessibility_zoom_control">Zoom control</string>
+    <string name="empty" translatable="false">" "</string>
+    <string name="frag_input_ids_owner_name" >车主姓名:</string>
+    <string name="frag_input_ids_sex" >性别:</string>
+    <string name="frag_input_ids_age" >年龄:</string>
+    <string name="frag_input_ids_native_place" >籍贯:</string>
+    <string name="frag_input_ids_id_name" >身份证号码:</string>
+    <string name="frag_input_ids_telephone" >电话:</string>
+    <string name="frag_input_ids_mobilephone" >手机:</string>
+    <string name="frag_input_ids_email" >邮箱:</string>
+    <string name="frag_input_ids_qq" >QQ:</string>
+    <string name="frag_input_ids_wechat" >微信:</string>
+    <string name="frag_input_ids_address" >详细地址:</string>
+    <string name="frag_input_ids_car_number" >号牌号码:</string>
+    <string name="frag_input_ids_car_color" >号牌颜色:</string>
+    <string name="frag_input_ids_fram_number" >车架号码:</string>
+    <string name="frag_input_ids_illegal_type" >违法类型:</string>
+    <string name="frag_input_ids_button" >保存</string>
+    <string name="result_car_number" >车牌识别结果</string>
+    
+    <string name="recog_car_number_result" >重新识别</string>
+    
+    <string name="recog_car_number_start_compare" >开始比对</string>
+    <string name="continue_scan_car" >继续查车</string>
+    
+    
+    <string name="login">登录</string>
+    <string name="forget">忘记密码</string>
+    <string name="register">注册</string>
+    <string name="login_title">交警缉查布控平台</string>
+    <string name="login_user_hint">请输入警员编号</string>
+    <string name="login_pass_hint">请输入密码</string>
+    <string name="company"> </string>
+    <string name="name_position">姓名   职称  您好！</string>
+    <string name="depart">单位名称</string>
+    <string name="new_notice">最新动态</string>
+    <string name="car_history">历史数据</string>
+    <string name="today_data">今日数据</string>
+    <string name="this_week_data">近7天数据</string>
+    <string name="half_month_data">近15天数据</string>
+    <string name="month_data">近30数据</string>
+    <string name="isYellowCar">黄标车</string>
+    <string name="isBlackListCar">布控车</string>
+    <string name="isSeizedCar">查封车</string>
+    <string name="isCheckOkCar">逾期未年审</string>
+    <string name="isScrappedCar">报废车</string>
+    <string name="legalNumber">违法未处理</string>
+    <string name="check_number_started">共缉查</string>
+    <string name="check_number_middle"></string>
+    <string name="check_number_end">辆异常车辆</string>
+    <string name="illeagl_item_tips">违法类型</string>
+    <string name="illeagl_upload_item_tips">是否上报</string>
+    <string name="illeagl_started_date">开始时间</string>
+    <string name="illeagl_end_date">结束时间</string>
+    <string name="query_car_check_history">查询缉查历史记录</string>
+    <string name="query_car_history_carNumber">识别车牌：</string>
+    <string name="query_car_history_time">识别时间：</string>
+    <string name="query_car_history_compare_result">比对结果：</string>
+    <string name="query_car_history_record_file">录像文件：</string>
+    <string name="query_car_history_upload">上报存档：</string>
+    <string name="compare_result">比对结果</string>
+    <string name="compare_car_number">车牌号：</string>
+    <string name="compare_car_color">车身颜色：</string>
+    <string name="compare_car_carType">车辆类型：</string>
+    <string name="compare_car_maker">车辆品牌：</string>
+    <string name="compare_car_type">车辆型号：</string>
+    <string name="compare_car_vin">车架号：</string>
+    <string name="compare_car_engine">发动机号：</string>
+    <string name="show_car_owner_info">查看车主信息\n∨</string>
+    <string name="compare_need_upload_info">结果上报平台存储</string>
+    <string name="compare_had_upload_info">已上报平台存储</string>
+    <string name="compare_record_play">录像回放</string>
+    <string name="compare_record_no">无录像</string>
+    <string name="ok">确定</string>
+    <string name="user_info">基本资料</string>
+    <string name="user_info_name">姓名：</string>
+<!--     <string name="user_info_sex">性别：</string> -->
+    <string name="user_info_id">编号：</string>
+    <string name="user_info_depart">部门：</string>
+    <string name="user_info_position">职位：</string>
+    <string name="user_info_phone">手机：</string>
+    <string name="user_change_password">修改密码</string>
+    <string name="user_change_password_old">原密码：</string>
+    <string name="user_change_password_old_hint">请输入原密码</string>
+    <string name="user_change_password_new">新密码：</string>
+    <string name="user_change_password_new_hint">请输入新密码</string>
+    <string name="user_change_password_ok">确认修改</string>
+
+</resources>

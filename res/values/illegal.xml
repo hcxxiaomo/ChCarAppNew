@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="illeagl_item">
+        <item >全部</item>
+        <item >逾期未年审</item>
+        <item >报废车</item>
+        <item >黄标车</item>
+        <item >布控车</item>
+        <item >违法未处理</item>
+    </string-array>
+    <string-array name="illeagl_upload_item">
+        <item >全部</item>
+        <item >未上报</item>
+        <item >已上报</item>
+    </string-array>
+</resources>

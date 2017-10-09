@@ -1,0 +1,41 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.mainActivity.CaptureAcivity" >
+     <item
+        android:id="@+id/mnuItemShowRecogResult"
+        android:orderInCategory="100"
+        android:title="ShowRecogResult"/>
+    <item
+        android:id="@+id/mnuItemShowVideo"
+        android:orderInCategory="100"
+        android:title="ShowVideo"/>
+    <item
+        android:id="@+id/mnuItemShowZoomBar"
+        android:orderInCategory="100"
+        android:title="ShowZoomBar"/>
+    <item
+        android:id="@+id/mnuItemAutoFocus"
+        android:orderInCategory="100"
+        android:title="AutoFocus"/>
+    <item
+        android:id="@+id/mnuItemSelectZoom"
+        android:orderInCategory="100"
+        android:title="距离范围"/>
+    <item
+        android:id="@+id/mnuItemSelectProvince"
+        android:orderInCategory="100"
+        android:title="优先省份"/>
+    <item
+        android:id="@+id/mnuItemSelectRecord"
+        android:orderInCategory="100"
+        android:title="录像方式"/>
+    <item
+        android:id="@+id/mnuItemSelectCamera"
+        android:orderInCategory="100"
+        android:title="切换摄像头"/>
+    <!-- <item
+        android:id="@+id/mnuItemInputIds"
+        android:orderInCategory="100"
+        android:title="测试数据"/> -->
+</menu>

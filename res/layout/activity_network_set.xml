@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="15sp"
+    android:orientation="vertical" >
+    
+    <TextView 
+         android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/network_set_server"
+        />
+    
+    <EditText
+      android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/et_network_set_server"
+    android:inputType="text"
+        />
+    <TextView 
+        android:paddingTop="30sp"
+         android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/network_set_port"
+        />
+    
+    <EditText
+      android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/et_network_set_port"
+    android:inputType="number"
+        />
+    <TextView 
+        android:paddingTop="30sp"
+         android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/network_set_dir"
+        />
+    
+    <EditText
+      android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/et_network_set_dir"
+    android:inputType="text"
+        />
+    
+    <Button 
+        android:id="@+id/bt_network_set"
+		 android:layout_width="match_parent"
+         android:layout_height="40sp"
+        android:layout_marginTop="40sp"
+        android:background="@drawable/btn_bg_red"
+    android:text="@string/button_ok"
+    android:textColor="@color/color_white"
+    android:padding="0sp"
+        />
+    
+
+</LinearLayout>
