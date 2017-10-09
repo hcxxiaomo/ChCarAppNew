@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:padding="6sp"
+        android:padding="3sp"
         >
         <TextView 
         android:id="@+id/raid_carnumber"
@@ -48,9 +48,10 @@
              android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/action_settings"
-        android:textSize="15sp"
+        android:textSize="14sp"
          android:textColor="@color/color_grey"
-          android:padding="6sp"
+          android:paddingTop="2sp"
+          android:paddingBottom="6sp"
             />
 
 </LinearLayout>
