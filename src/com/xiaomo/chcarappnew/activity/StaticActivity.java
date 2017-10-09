@@ -33,6 +33,7 @@ import com.xiaomo.chcarappnew.adapt.CarHistoryResultInfoAdapter;
 import com.xiaomo.db.dao.CarNumberInfoDao;
 import com.xiaomo.db.model.CarHistoryResultInfo;
 import com.xiaomo.db.model.CarNumberInfo;
+import com.xiaomo.db.model.PiePojo;
 import com.xiaomo.util.MyDbHelper;
 import com.xiaomo.util.PageBean;
 
@@ -63,12 +64,14 @@ public class StaticActivity  extends Activity {
 	private String end_date = null;
 	private String car_number = null;
 
-    String[] date = {"10-22","11-22","12-22","1-22","6-22","5-23","5-22","6-22","5-23","5-22"};//X轴的标注
-    int[] score= {50,42,90,33,10,74,22,18,79,20};//图表的数据点
-    int[] score_new= {30,40,90,30,10,70,20,10,70,20};//图表的数据点
+//    String[] date = {"10-22","11-22","12-22","1-22","6-22","5-23","5-22","6-22","5-23","5-22"};//X轴的标注
+//    int[] score= {50,42,90,33,10,74,22,18,79,20};//图表的数据点
+//    int[] score_new= {30,40,90,30,10,70,20,10,70,20};//图表的数据点
     private List<PointValue> mPointValues = new ArrayList<PointValue>();
     private List<PointValue> mPointValues_new = new ArrayList<PointValue>();
     private List<AxisValue> mAxisXValues = new ArrayList<AxisValue>();
+    
+    private LinkedList<PiePojo> listPiePojo ;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -83,11 +86,13 @@ public class StaticActivity  extends Activity {
 		 myDbHelper = new MyDbHelper(this, "db_car_number", 1);
 		 carNumberInfoDao = new CarNumberInfoDao(myDbHelper.getReadableDatabase());//得到dao
 		
-	      //初始化一个有processBar的LinearLayout
+	    //初始化一个有processBar的LinearLayout
    		linearLayout = new LinearLayout(this);
    		progressBar = new ProgressBar(this);
    		linearLayout.addView(progressBar, params);
    		linearLayout.setGravity(Gravity.CENTER);
+   		
+   		listPiePojo = carNumberInfoDao.getPieInfo();
    		
    		//list数据查询功能
    	 nCarBean = changeCniToChri(carNumberInfoDao.findCarNumberInfo(
@@ -124,22 +129,31 @@ public class StaticActivity  extends Activity {
      * 设置X 轴的显示
      */
     private void getAxisXLables(){
-        for (int i = 0; i < date.length; i++) {    
-            mAxisXValues.add(new AxisValue(i).setLabel(date[i]));    
+    	if (listPiePojo == null) {
+			return;
+		}
+        for (int i = 0; i < listPiePojo.size(); i++) {    
+            mAxisXValues.add(new AxisValue(i).setLabel(listPiePojo.get(i).date));    
         }       
     }
     /**
      * 图表的每个点的显示
      */
     private void getAxisPoints(){
-        for (int i = 0; i < score.length; i++) {    
-            mPointValues.add(new PointValue(i, score[i]));
-            mPointValues_new.add(new PointValue(i, score_new[i]));
+    	if (listPiePojo == null) {
+			return;
+		}
+        for (int i = 0; i < listPiePojo.size(); i++) {    
+            mPointValues.add(new PointValue(i, listPiePojo.get(i).totalSum));
+            mPointValues_new.add(new PointValue(i, listPiePojo.get(i).blackSum));
         } 
 	
     }
     
     private void initLineChart(){
+    	if (listPiePojo == null) {
+			return;
+		}
         Line line = new Line(mPointValues).setColor(Color.parseColor("#69a8de"));  //折线的颜色（橙色）
         Line line_new = new Line(mPointValues_new).setColor(Color.parseColor("#e9c107"));  //折线的颜色（橙色）
         List<Line> lines = new ArrayList<Line>();    

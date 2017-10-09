@@ -12,6 +12,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.xiaomo.db.model.CarNumberInfo;
+import com.xiaomo.db.model.PiePojo;
 import com.xiaomo.util.PageBean;
 
 public class CarNumberInfoDao {
@@ -229,6 +230,21 @@ public class CarNumberInfoDao {
 //		} catch (SQLException e) {
 //			e.printStackTrace();
 //		}
+	}
+	
+	public LinkedList<PiePojo> getPieInfo(){
+		LinkedList<PiePojo> list = new LinkedList<PiePojo>();
+		String sql = "select substr(create_time,1,10), sum(is_legal_car),sum(is_yellow_car),sum(is_blacklist_car),sum(is_seized_car),sum(is_checkok_car),sum(is_scrapped_car) from t_carnumber_info  group by substr(create_time,1,10) order by substr(create_time,1,10) desc limit 0 ,15 ";
+		Cursor result =  db.rawQuery(sql, null);
+		PiePojo pie = null;
+		for (result.moveToFirst(); !result.isAfterLast(); result.moveToNext()) {
+			pie = new PiePojo();
+			pie.date = result.getString(0);
+			pie.blackSum = result.getInt(3);
+			pie.totalSum = (result.getInt(1) +result.getInt(2) + result.getInt(3) + result.getInt(4) + result.getInt(5) + result.getInt(6));
+			list.add(pie);
+		}
+		return list;
 	}
 	
 	public LinkedList<Integer> getCarInfoTime(int datBefore){
