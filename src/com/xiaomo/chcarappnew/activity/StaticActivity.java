@@ -16,6 +16,7 @@ import lecho.lib.hellocharts.model.Viewport;
 import lecho.lib.hellocharts.view.LineChartView;
 import android.app.ActionBar;
 import android.app.ActionBar.LayoutParams;
+import android.content.Intent;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -93,6 +94,14 @@ public class StaticActivity  extends Activity {
    		linearLayout.setGravity(Gravity.CENTER);
    		
    		listPiePojo = carNumberInfoDao.getPieInfo();
+   		
+   		//如果是来自上一个页面的话，需要得到传输过来的数据
+   		Intent intent = getIntent();
+   		type = intent.getStringExtra("type");
+   		car_number = intent.getStringExtra("car_number");
+   		upload = intent.getStringExtra("upload");
+   		started_date = intent.getStringExtra("started_date");
+   		end_date = intent.getStringExtra("end_date");
    		
    		//list数据查询功能
    	 nCarBean = changeCniToChri(carNumberInfoDao.findCarNumberInfo(
