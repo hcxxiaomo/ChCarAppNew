@@ -16,6 +16,7 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 import android.hardware.Sensor;
@@ -89,6 +90,10 @@ public class ScanActivity extends Activity implements SensorEventListener,View.O
 	public  PopupPassword 	 m_PopupPassword;
 
 	private ImageView		mbtnRecoder;
+	private ImageView		imageView_animation1;
+	
+	private AnimationDrawable animationDrawable;
+	
 	public boolean			m_bRecorderStarted;
 
     public ScanHandler 		m_scanHandler;
@@ -174,6 +179,11 @@ public class ScanActivity extends Activity implements SensorEventListener,View.O
         mHomeLayout = (RelativeLayout) findViewById(R.id.previewLayout);
         mTxtViewPreviewSize = (TextView)findViewById(R.id.txtViewPreviewSize);
         mTxtViewRecogTime = (TextView)findViewById(R.id.txtViewRecogTime);
+        
+        imageView_animation1 = (ImageView) findViewById(R.id.imageView_animation1);
+        imageView_animation1.setBackgroundResource(R.drawable.gif);
+     // 获取AnimationDrawable对象 
+        animationDrawable = (AnimationDrawable)imageView_animation1.getBackground();
 
         //mTxtViewPreviewSize.setVisibility(View.GONE);
         //mTxtViewRecogTime.setVisibility(View.GONE);
@@ -925,13 +935,30 @@ public class ScanActivity extends Activity implements SensorEventListener,View.O
 					is_leage = true;
 				}
 				if (is_leage) {
+					
 					car_illegal.setText(sb.toString());
+					
+					imageView_animation1.setVisibility(View.VISIBLE);
+			        // 动画是否正在运行  
+			        if(animationDrawable.isRunning()){  
+			            //停止动画播放  
+			            animationDrawable.stop();  
+			        }  
+			            //开始或者继续动画播放  
+			            animationDrawable.start();  
+					
 				}else{
+					imageView_animation1.setVisibility(View.INVISIBLE);
+					// 动画是否正在运行  
+			        if(animationDrawable.isRunning()){  
+			            //停止动画播放  
+			            animationDrawable.stop();  
+			        }  
 					car_illegal.setText("正常车辆");
 					car_illegal.setTextColor(Color.BLACK);
 				}
 				cni.setServerCarId(response.optLong("serverCarId"));
-				cni.setIsReported(0);
+				cni.setIsReported(1);
 				Log.i("-xiaomo-", cni.toString());
 				
 				//把数据保存到数据库中去
