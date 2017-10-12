@@ -3,10 +3,24 @@ package com.carOCR.activity;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.logging.Logger;
 
 import org.apache.http.Header;
 import org.json.JSONObject;
+
+import com.carOCR.RecogEngine;
+import com.carOCR.RecogResult;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+import com.szOCR.camera.CameraPreview;
+import com.szOCR.camera.ScanHandler;
+import com.szOCR.camera.ViewfinderView;
+import com.szOCR.general.CGlobal;
+import com.szOCR.general.Defines;
+import com.xiaomo.chcarappnew.R;
+import com.xiaomo.db.dao.CarNumberInfoDao;
+import com.xiaomo.db.model.CarNumberInfo;
+import com.xiaomo.util.MyDbHelper;
+import com.xiaomo.util.RestClient;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -23,6 +37,9 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -37,26 +54,10 @@ import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.carOCR.RecogEngine;
-import com.carOCR.RecogResult;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
-import com.szOCR.camera.CameraPreview;
-import com.szOCR.camera.ScanHandler;
-import com.szOCR.camera.ViewfinderView;
-import com.szOCR.general.CGlobal;
-import com.szOCR.general.Defines;
-import com.xiaomo.chcarappnew.R;
-import com.xiaomo.db.dao.CarNumberInfoDao;
-import com.xiaomo.db.model.CarNumberInfo;
-import com.xiaomo.util.MyDbHelper;
-import com.xiaomo.util.RestClient;
 
 public class ScanActivity extends Activity implements SensorEventListener,View.OnClickListener, OnTouchListener
 {
@@ -92,7 +93,10 @@ public class ScanActivity extends Activity implements SensorEventListener,View.O
 	private ImageView		mbtnRecoder;
 	private ImageView		imageView_animation1;
 	
-	private AnimationDrawable animationDrawable;
+	private SoundPool soundPool;
+//	private AnimationDrawable animationDrawable;
+	
+//	private MediaPlayer mp;//mediaPlayer对象 
 	
 	public boolean			m_bRecorderStarted;
 
@@ -181,9 +185,9 @@ public class ScanActivity extends Activity implements SensorEventListener,View.O
         mTxtViewRecogTime = (TextView)findViewById(R.id.txtViewRecogTime);
         
         imageView_animation1 = (ImageView) findViewById(R.id.imageView_animation1);
-        imageView_animation1.setBackgroundResource(R.drawable.gif);
+//        imageView_animation1.setBackgroundResource(R.drawable.gif);
      // 获取AnimationDrawable对象 
-        animationDrawable = (AnimationDrawable)imageView_animation1.getBackground();
+//        animationDrawable = (AnimationDrawable)imageView_animation1.getBackground();
 
         //mTxtViewPreviewSize.setVisibility(View.GONE);
         //mTxtViewRecogTime.setVisibility(View.GONE);
@@ -267,6 +271,9 @@ public class ScanActivity extends Activity implements SensorEventListener,View.O
         sp = this.getSharedPreferences("userInfo", Activity.MODE_PRIVATE);
         
         networkPrefs = this.getSharedPreferences("network_set", Activity.MODE_PRIVATE);
+        
+        soundPool= new SoundPool(2,AudioManager.STREAM_SYSTEM,5);//第二行将soundPool实例化，第一个参数为soundPool可以支持的声音数量，这决定了Android为其开设多大的缓冲区，第二个参数为声音类型，在这里标识为系统声音，除此之外还有AudioManager.STREAM_RING以及AudioManager.STREAM_MUSIC等，系统会根据不同的声音为其标志不同的优先级和缓冲区，最后参数为声音品质，品质越高，声音效果越好，但耗费更多的系统资源。
+        soundPool.load(this,R.raw.illegal,1);//系统为soundPool加载声音，第一个参数为上下文参数，第二个参数为声音的id，一般我们将声音信息保存在res的raw文件夹下，如下图所示。
         
     }
     @SuppressLint("HandlerLeak")
@@ -935,25 +942,25 @@ public class ScanActivity extends Activity implements SensorEventListener,View.O
 					is_leage = true;
 				}
 				if (is_leage) {
-					
+					soundPool.play(1,1, 1, 0, 0, 1); //播放了，第一个参数为id，id即为放入到soundPool中的顺序，比如现在collide.wav是第一个，因此它的id就是1。第二个和第三个参数为左右声道的音量控制。第四个参数为优先级，由于只有这一个声音，因此优先级在这里并不重要。第五个参数为是否循环播放，0为不循环，-1为循环。最后一个参数为播放比率，从0.5到2，一般为1，表示正常播放。
 					car_illegal.setText(sb.toString());
 					
 					imageView_animation1.setVisibility(View.VISIBLE);
-			        // 动画是否正在运行  
-			        if(animationDrawable.isRunning()){  
-			            //停止动画播放  
-			            animationDrawable.stop();  
-			        }  
-			            //开始或者继续动画播放  
-			            animationDrawable.start();  
+//			        // 动画是否正在运行  
+//			        if(animationDrawable.isRunning()){  
+//			            //停止动画播放  
+//			            animationDrawable.stop();  
+//			        }  
+//			            //开始或者继续动画播放  
+//			            animationDrawable.start();  
 					
 				}else{
 					imageView_animation1.setVisibility(View.INVISIBLE);
-					// 动画是否正在运行  
-			        if(animationDrawable.isRunning()){  
-			            //停止动画播放  
-			            animationDrawable.stop();  
-			        }  
+//					// 动画是否正在运行  
+//			        if(animationDrawable.isRunning()){  
+//			            //停止动画播放  
+//			            animationDrawable.stop();  
+//			        }  
 					car_illegal.setText("正常车辆");
 					car_illegal.setTextColor(Color.BLACK);
 				}
