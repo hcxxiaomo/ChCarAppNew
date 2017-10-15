@@ -42,6 +42,10 @@
             android:theme="@style/CaptureTheme"
            >
        </activity>
+          <activity android:name="com.carOCR.activity.ScanIllegalActivity"
+            android:theme="@style/CaptureTheme"
+           >
+       </activity>
          <activity android:name="com.xiaomo.chcarappnew.activity.NetworkSetActivity">
        </activity>
          <activity android:name="com.xiaomo.chcarappnew.activity.DefaultAreaActivity">

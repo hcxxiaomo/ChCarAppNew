@@ -4,15 +4,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-
-
-import com.carOCR.RecogResult;
-import com.carOCR.activity.ScanActivity;
-import com.carOCR.RecogEngine;
 
 import android.app.Activity;
 import android.content.Context;
@@ -24,15 +17,18 @@ import android.graphics.Matrix;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.graphics.YuvImage;
-import android.hardware.Camera.Size;
 import android.media.MediaPlayer;
 import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Surface;
 import android.view.WindowManager;
 import android.widget.Toast;
+
+import com.carOCR.RecogEngine;
+import com.carOCR.RecogResult;
+import com.carOCR.activity.ScanActivity;
+import com.carOCR.activity.ScanIllegalActivity;
 
 public class CGlobal 
 {
@@ -73,6 +69,7 @@ public class CGlobal
 	public static 	int				ROTATE_270	= 270;
 	
 	public static 	ScanActivity	g_scanActivity = null;
+	public static 	ScanIllegalActivity	g_scanIllegalActivity = null;
 	
 	public static	int				g_nCameraZoomFactor = -1;
 	

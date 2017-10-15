@@ -124,18 +124,18 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
    public int  setNextCamera(){
 	   Log.e("-xiaomo-", "setNextCamera:Camera.getNumberOfCameras()="+Camera.getNumberOfCameras()+"|mCameraId="+mCameraId);
 	   mCameraId = (Camera.getNumberOfCameras() - mCameraId - 1) % Camera.getNumberOfCameras();
-	   mCamera.stopPreview();//ͣ��ԭ������ͷ��Ԥ��
+	   mCamera.stopPreview();
 	   cancelAutoFocus();
-	   mCamera.release();//�ͷ���Դ
-	   mCamera = null;//ȡ��ԭ������ͷ
-	   mCamera = Camera.open(mCameraId);//�򿪵�ǰѡ�е�����ͷ
+	   mCamera.release();
+	   mCamera = null;
+	   mCamera = Camera.open(mCameraId);
 //	   mCamera = Camera.open(mCameraId);
        Camera.Parameters cameraParams = mCamera.getParameters();
        mPreviewSizeList = cameraParams.getSupportedPreviewSizes();
        mPictureSizeList = cameraParams.getSupportedPictureSizes();
 //       mbHasSurface = false;
 //       bIsCameraReleased = true;
-       mCamera.startPreview();//��ʼԤ��
+       mCamera.startPreview();
        return mCameraId;
     }
     
