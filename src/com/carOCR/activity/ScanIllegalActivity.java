@@ -1,28 +1,19 @@
 package com.carOCR.activity;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-import org.apache.http.Header;
-import org.json.JSONObject;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import com.carOCR.RecogEngine;
 import com.carOCR.RecogResult;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 import com.szOCR.camera.CameraPreview;
-import com.szOCR.camera.ScanHandler;
 import com.szOCR.camera.ScanIllegalHandler;
 import com.szOCR.camera.ViewfinderView;
 import com.szOCR.general.CGlobal;
-import com.szOCR.general.Defines;
 import com.xiaomo.chcarappnew.R;
 import com.xiaomo.db.dao.CarNumberInfoDao;
-import com.xiaomo.db.model.CarNumberInfo;
 import com.xiaomo.util.BitmapThumb;
 import com.xiaomo.util.MyDbHelper;
-import com.xiaomo.util.RestClient;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -32,8 +23,6 @@ import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.AnimationDrawable;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 import android.hardware.Sensor;
@@ -41,13 +30,13 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.PowerManager;
 import android.os.Vibrator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -56,6 +45,7 @@ import android.view.View;
 import android.view.View.OnTouchListener;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
@@ -98,6 +88,11 @@ public class ScanIllegalActivity extends Activity implements SensorEventListener
 	private ImageView		imageView_animation1;
 	private ImageView		scan_illegal_image_1;
 	private ImageView		scan_illegal_image_2;
+	private Button scan_illegal_save_btn;
+	
+    private MySelectRecyclerView mRecyclerView;  
+    private MainSelectAdapt mAdapter;  
+    private List<String> mDatas;  
 	
 	private SoundPool soundPool;
 //	private AnimationDrawable animationDrawable;
@@ -194,6 +189,8 @@ public class ScanIllegalActivity extends Activity implements SensorEventListener
         imageView_animation1 = (ImageView) findViewById(R.id.imageView_animation1);
         scan_illegal_image_1 = (ImageView) findViewById(R.id.scan_illegal_image_1);
         scan_illegal_image_2 = (ImageView) findViewById(R.id.scan_illegal_image_2);
+        scan_illegal_save_btn = (Button) findViewById(R.id.scan_illegal_save_btn);
+        scan_illegal_save_btn.setOnClickListener(this);
 //        imageView_animation1.setBackgroundResource(R.drawable.gif);
      // 获取AnimationDrawable对象 
 //        animationDrawable = (AnimationDrawable)imageView_animation1.getBackground();
@@ -283,6 +280,41 @@ public class ScanIllegalActivity extends Activity implements SensorEventListener
         
         soundPool= new SoundPool(2,AudioManager.STREAM_SYSTEM,5);//第二行将soundPool实例化，第一个参数为soundPool可以支持的声音数量，这决定了Android为其开设多大的缓冲区，第二个参数为声音类型，在这里标识为系统声音，除此之外还有AudioManager.STREAM_RING以及AudioManager.STREAM_MUSIC等，系统会根据不同的声音为其标志不同的优先级和缓冲区，最后参数为声音品质，品质越高，声音效果越好，但耗费更多的系统资源。
         soundPool.load(this,R.raw.illegal,1);//系统为soundPool加载声音，第一个参数为上下文参数，第二个参数为声音的id，一般我们将声音信息保存在res的raw文件夹下，如下图所示。
+        
+        
+        initDatas();  
+        //得到控件  
+        mRecyclerView = (MySelectRecyclerView) findViewById(R.id.id_recyclerview_horizontal);  
+        //设置布局管理器  
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);  
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);  
+        mRecyclerView.setLayoutManager(linearLayoutManager);  
+        //设置适配器  
+        mAdapter = new MainSelectAdapt(this, mDatas);
+        mAdapter.setOnItemClickLitener(new com.carOCR.activity.MainSelectAdapt.OnItemClickLitener()  
+        {  
+            @Override  
+            public void onItemClick(View view, int position)  
+            {  
+                Toast.makeText(ScanIllegalActivity.this, position+"", Toast.LENGTH_SHORT)  
+                        .show();  
+            }  
+        });  
+        
+        mRecyclerView.setOnItemScrollChangeListener(new com.carOCR.activity.MySelectRecyclerView.OnItemScrollChangeListener()  
+        {  
+            @Override  
+            public void onChange(View view, int position)  
+            {  
+//            	Toast.makeText(MainSelectActivity.this, position+"--ScrollChange--"+position % mDatas.size(), Toast.LENGTH_SHORT)  
+//                .show();  
+            	//可以改成 +2 这样可以选择中间那个了 | 得到position就得到了对应的位置信息
+            	// mImg.setImageResource(mDatas.get(position));  
+            	Log.i("-xiaomo-","i = "+ position + "i % total_size= "+ (position % mDatas.size()));
+            };  
+        });
+        
+        mRecyclerView.setAdapter(mAdapter);  
         
     }
     @SuppressLint("HandlerLeak")
@@ -882,6 +914,11 @@ public class ScanIllegalActivity extends Activity implements SensorEventListener
     	}else if(v.equals(scan_illegal_image_1) || v.equals(scan_illegal_image_2) ){
     		Log.i("-xiaomo-", "else if (v.equals(m_PopupResult.scan_illegal_image_1/2)");
     		((ImageView)v).setImageDrawable(null);
+    		Toast.makeText(this, "该图片已经删除", Toast.LENGTH_SHORT).show();
+    	}else if (v.equals(scan_illegal_save_btn)){
+    		Toast.makeText(this, "罚单已经开出", Toast.LENGTH_SHORT).show();
+    		scan_illegal_image_1.setImageDrawable(null);
+    		scan_illegal_image_2.setImageDrawable(null);
     	}
 	}
 	
@@ -901,6 +938,12 @@ public class ScanIllegalActivity extends Activity implements SensorEventListener
 	  
 	  return false;  
 	 }  
+	
+	 private void initDatas()  
+	    {  //index = 0~6 
+	        mDatas = new ArrayList<String>(Arrays.asList("第一个_first","第二个_second","第三个_third","第四个_forth","第五个_fifth","第六个_sixth","第七个_serventh"));  
+	    }  
+	
 	
 	private void getCarInfoAndSave(){
 		 //联网开始查询数据信息
